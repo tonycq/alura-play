@@ -1,5 +1,6 @@
 import { conectaAPI } from "../js/conexionesApi.js";
 
+
 const lista = document.querySelector("[data-lista]");
 
 function crearCard(titulo, descripcion, url, imagen) {
@@ -20,14 +21,11 @@ function crearCard(titulo, descripcion, url, imagen) {
 }
 
 async function listarVideos() {
-    try {
+   
         const listaAPI = await conectaAPI.listaVideos();
         listaAPI.forEach(video =>
             lista.appendChild(crearCard(video.titulo, video.descripcion, video.url, video.imagen))
         );
-    } catch (error) {
-        console.error("Error al listar los videos:", error);
     }
-}
 
 listarVideos();
