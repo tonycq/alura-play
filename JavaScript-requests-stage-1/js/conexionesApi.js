@@ -1,14 +1,6 @@
 async function listaVideos() {
-    const conexion = await fetch("http://localhost:3001/videos", {
-        method: "GET",
-        headers: {
-            "Content-type": "application/json"
-        }
-    });
-
- 
+    const conexion = await fetch("http://localhost:3001/videos");
     const conexionConvertida = await conexion.json();
-
     return conexionConvertida;
 }
 
@@ -28,7 +20,10 @@ async function enviarVideo(titulo, descripcion, url, imagen) {
 
  
 
-    const conexionConvertida = await conexion.json();
+    const conexionConvertida=  conexion.json();
+    if (!conexion.ok){
+        throw new Error ("Ha ocurrido un error al enviar el video");
+    }
     return conexionConvertida;
 }
 async function  buscarVideos(palabraClave){

@@ -21,11 +21,15 @@ function crearCard(titulo, descripcion, url, imagen) {
 }
 
 async function listarVideos() {
-   
+    try{
         const listaAPI = await conectaAPI.listaVideos();
-        listaAPI.forEach(video =>
-            lista.appendChild(crearCard(video.titulo, video.descripcion, video.url, video.imagen))
-        );
+        listaAPI.forEach(video =>lista.appendChild(crearCard(video.titulo, video.descripcion, video.url, video.imagen))
+    );
+
+    }catch{
+        lista.innerHTML=`<h2 class ="mensaje__titulo">Ha ocurrido un problema con la conexion :( </h2>`;
+    }
+   
     }
 
 listarVideos();
